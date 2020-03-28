@@ -1,0 +1,81 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h3>Employees</h3>
+      </div>
+      <div class="col-sm-12 col-md-6"><input type="text" class="form-control" placeholder="Search Employee"
+          [(ngModel)]="query" id="listSearch"></div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped table-bordered" *ngIf=" (employees | async)">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody height="70%">
+        <tr *ngFor="let employee of returnedArray|filter:query;">
+          <td>{{employee.employee_name}}</td>
+          <td>{{employee.employee_age}}</td>
+          <td>{{employee.employee_salary}}</td>
+          <td>
+            <button (click)="employeeDetails(employee)" class="btn btn-link" style="margin-left: 10px"><i
+                class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <!-- <button (click)="OpenModelEmployee(employee)" type="button" class="btn btn-outline-dark mx-1"
+              data-toggle="modal" data-target="#exampleModalCenter">
+              View Details
+            </button> -->
+            <button class="btn btn-btn-link text-danger" (click)="deleteEmployee(employee.id)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination [totalItems]="tempAry.length" (pageChanged)="pageChanged($event)"></pagination>
+  </div>
+</div>
+
+<!--
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">EMPLOYEE DETAILS:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label>Name: </label> {{EmployeesTempList.employee_name}}
+        </div>
+        <div>
+          <label>Age: </label> {{EmployeesTempList.employee_age}}
+        </div>
+        <div>
+          <label>Salary: </label> {{EmployeesTempList.employee_salary}}
+        </div>
+        <div>
+          <label>Photo Url: </label> {{EmployeesTempList.profile_image}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+          data-target="#exampleModalScrollable">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+-->

@@ -1,0 +1,28 @@
+<div class="mx-auto mt-3 card col-md-4 col-sm-12 py-4 px-3" [hidden]="submitted">
+  <h3>Update Employee</h3>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="employee_name">Name</label>
+      <input type="text" class="form-control" id="employee_name" required [(ngModel)]="employee.employee_name" name="employee_name">
+    </div>
+    <div class="form-group">
+      <label for="employee_age">Age</label>
+      <input type="text" class="form-control" id="employee_age" required [(ngModel)]="employee.employee_age" name="employee_age">
+    </div>
+    <div class="form-group">
+      <label for="employee_salary">Salary</label>
+      <input type="text" class="form-control" id="employee_salary" required [(ngModel)]="employee.employee_salary" name="employee_salary">
+    </div>
+    <div class="form-group">
+      <label for="profile_image">Photo Link</label>
+      <input type="text" class="form-control" id="profile_image" required [(ngModel)]="employee.profile_image" name="profile_image">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="button" (click)="cancel()" class="btn btn-outline-danger float-right">Cancel</button>
+  </form>
+</div>
+
+<div class="alert-info p-5 text-center" [hidden]="!submitted">
+  <h4 class="my-1">Employee Details Updated successfully!</h4>
+  <h6>Redirecting to Employee List Page...</h6>
+</div>
